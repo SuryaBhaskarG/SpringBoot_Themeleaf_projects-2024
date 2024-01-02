@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>MyDiary App Homepage</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="header">
+
+    <div class="first">
+        <img th:src="@{/images/diary.jpg}" width="60" height="60" />
+    </div>
+    <div class="second">MyDiary App</div>
+
+</div>
+
+<br/><br/>
+
+<hr/>
+<br/><br/>
+<h1>welcome <span th:style="'color:SteelBlue'" th:if="${user != null}" th:text="${user.username}"></span></h1>
+
+
+<a th:href="@{./signout}" style="color:red;float:right">Signout</a>
+
+<div class="bodypart">
+
+    <div class="bodypart1">
+        <img th:src="@{/images/diary.jpg}" />
+    </div>
+
+    <div class="bodypart2">
+        <h1>ADD ENTRY</h1><br/><br/><br/>
+        <form th:action="@{./saveentry}" method="POST">
+            <label>Date</label> <input type="date" name="entrydate" class="formcontrol" /><br/><br/>
+            <label>Description</label>
+            <textarea rows="10" cols="30" name="description"></textarea>
+            <input type="hidden" name="userid" th:value="${user.id}" />
+
+            <br/><br/><br/>
+            <button type="submit">SAVE ENTRY</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
